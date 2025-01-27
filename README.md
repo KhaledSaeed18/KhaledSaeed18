@@ -1,6 +1,10 @@
 # 💫 About Me:
 💻 Computer engineering student with a strong focus on web development using the MERN stack.
 
+<p align="center">
+  <img alt="Daily Work" height="150px" src="https://i.imgur.com/uhZdH9C.gif" />
+</p>
+
 ## 🌐 Socials:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/khaled-s-saeed) 
 
