@@ -7,6 +7,7 @@
 
 ## 🌐 Socials:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/khaled-s-saeed)
+[![X](https://img.shields.io/badge/X-000000?logo=x&logoColor=white)](https://x.com/khaleddsaeed)
 [![DEV.to](https://img.shields.io/badge/DEV.to-%23000000.svg?logo=devdotto&logoColor=white)](https://dev.to/khaledsaeed18)
 
 # 💻 Tech Stack:
