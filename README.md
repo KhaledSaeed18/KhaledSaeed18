@@ -17,4 +17,4 @@
 ![](https://github-readme-streak-stats.herokuapp.com/?user=KhaledSaeed18&theme=dark&hide_border=false)<br/>
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=KhaledSaeed18&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
 
-[![committers.top badge](https://user-badge.committers.top/lebanon_private/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon_private/KhaledSaeed18)
+ <img src="https://cultofthepartyparrot.com/flags/hd/lebanonparrot.gif" width="30" height="30"/>[![committers.top badge](https://user-badge.committers.top/lebanon_private/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon_private/KhaledSaeed18)
