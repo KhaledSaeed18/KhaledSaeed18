@@ -5,6 +5,8 @@
   <img alt="Daily Work" height="160px" src="https://i.imgur.com/uhZdH9C.gif" />
 </p>
 
+ <img src="https://cultofthepartyparrot.com/flags/hd/lebanonparrot.gif" width="30" height="30"/>[![committers.top badge](https://user-badge.committers.top/lebanon_private/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon_private/KhaledSaeed18)
+
 ## 🌐 Socials:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/khaled-s-saeed)
 [![X](https://img.shields.io/badge/X-000000?logo=x&logoColor=white)](https://x.com/khaleddsaeed)
@@ -16,5 +18,3 @@
 # 📊 GitHub Stats:
 ![](https://github-readme-streak-stats.herokuapp.com/?user=KhaledSaeed18&theme=dark&hide_border=false)<br/>
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=KhaledSaeed18&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
-
- <img src="https://cultofthepartyparrot.com/flags/hd/lebanonparrot.gif" width="30" height="30"/>[![committers.top badge](https://user-badge.committers.top/lebanon_private/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon_private/KhaledSaeed18)
