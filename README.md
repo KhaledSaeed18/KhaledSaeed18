@@ -1,5 +1,5 @@
 # 💫 About Me:
-💻 Computer engineering student with a strong focus on web development using the MERN stack.
+💻 Master’s student in Computer and Communication Engineering with a specialization in Software Development using **TypeScript**.
 
 <p align="center">
   <img alt="Daily Work" height="160px" src="https://i.imgur.com/uhZdH9C.gif" />
