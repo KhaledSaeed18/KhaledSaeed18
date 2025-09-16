@@ -6,6 +6,7 @@
 </p>
 
  <img src="https://cultofthepartyparrot.com/flags/hd/lebanonparrot.gif" width="30" height="30"/>[![committers.top badge](https://user-badge.committers.top/lebanon_private/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon_private/KhaledSaeed18)
+![](https://komarev.com/ghpvc/?username=KhaledSaeed18&color=4fc921)
 
 ## 🌐 Socials:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/khaled-s-saeed)
