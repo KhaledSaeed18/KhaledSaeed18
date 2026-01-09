@@ -87,5 +87,4 @@
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 # 📊 GitHub Stats:
-![](https://github-readme-streak-stats.herokuapp.com/?user=KhaledSaeed18&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=KhaledSaeed18&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+[![GitHub Streak](https://github-readme-stats-fast.vercel.app/api/streak?username=KhaledSaeed18&theme=radical)](https://github.com/pranesh-2005/github-readme-stats-fast)<br/>
