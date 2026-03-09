@@ -10,10 +10,11 @@
  [![committers.top badge](https://user-badge.committers.top/lebanon_private/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon_private/KhaledSaeed18)<br/>[![committers.top badge](https://user-badge.committers.top/lebanon/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon/KhaledSaeed18)<br/>[![committers.top badge](https://user-badge.committers.top/lebanon_public/KhaledSaeed18.svg)](https://user-badge.committers.top/lebanon_public/KhaledSaeed18)
 
 
-## 🌐 Socials:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/khaled-s-saeed)
-[![X](https://img.shields.io/badge/X-000000?logo=x&logoColor=white)](https://x.com/khaleddsaeed)
-[![DEV.to](https://img.shields.io/badge/DEV.to-%23000000.svg?logo=devdotto&logoColor=white)](https://dev.to/khaledsaeed18)
+## 🌐 Socials
+[![Portfolio](https://img.shields.io/badge/Portfolio-000?style=for-the-badge&logo=google-chrome&logoColor=00C853)](https://khaledsaeed.tech)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/khaled-s-saeed)
+[![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/khaleddsaeed)
+[![DEV.to](https://img.shields.io/badge/DEV.to-000000?style=for-the-badge&logo=devdotto&logoColor=white)](https://dev.to/khaledsaeed18)
 
 # 💻 Tech Stack:
 ## 🖥️ Languages
