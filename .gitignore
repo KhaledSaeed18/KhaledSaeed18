@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.proof/
+.prints/
+.last/
+.site/
+.cache/
+.DS_Store

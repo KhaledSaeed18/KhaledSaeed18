@@ -1,0 +1,86 @@
+# The press. Pulls a fresh printing of every sheet, proofs it, and publishes
+# it to the `prints` branch, which the README reads from. One orphan commit,
+# force-pushed: main keeps only the source and the README.
+#
+# Beirut keeps whole-hour offsets (UTC+2, UTC+3 in summer), so a run at :17
+# UTC is a run at :17 in Beirut in every season: the night edition starts on
+# the 01:17 run and the day edition on the 07:17 run. Between them the press
+# stops: the night printing is pulled once and left up until morning.
+name: press
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  push:
+    branches: [main, press/reprint]
+    paths:
+      - "press/**"
+      - "README.md"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/press.yml"
+  workflow_dispatch:
+    inputs:
+      at:
+        description: "Print as if it were this moment (ISO 8601, e.g. 2026-10-28T23:30:00Z for the night edition)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: press
+  cancel-in-progress: false
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      # the last printing: to compare against, and to fall back on if GitHub's API is down
+      - uses: actions/checkout@v4
+        with:
+          ref: prints
+          path: .last
+        continue-on-error: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: README is set from press/readme.mjs
+        run: node press/readme.mjs --check
+
+      # press hours: the per-day commit counts stay in the Actions cache, never in public
+      - id: day
+        run: echo "key=hours-$(TZ=Asia/Beirut date +%F)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: .cache
+          key: ${{ steps.day.outputs.key }}
+          restore-keys: hours-
+
+      - id: print
+        name: Pull the sheets
+        run: node press/build.mjs --out .prints --last .last --cache .cache ${{ inputs.at && format('--at {0}', inputs.at) || '' }}
+        env:
+          # an optional fine-grained, read-only token adds private repositories to the press hours
+          GH_TOKEN: ${{ secrets.PRESS_TOKEN || github.token }}
+
+      - name: Proof
+        run: node press/proof.mjs .prints README.md
+
+      - name: Publish
+        if: steps.print.outputs.publish == 'yes' || github.event_name != 'schedule'
+        run: |
+          cd .prints
+          git init -q -b prints
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -qm "printing ${{ github.run_number }}, $(jq -r .beirut state.json)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:prints
