@@ -1,4 +1,4 @@
-// The pane of link stamps, and the drawer tabs. Each stamp is the site's
+// The pane of link stamps. Each stamp is the site's
 // postcard stamp (components/home/contact-sheet.tsx, .stamp in
 // app/globals.css) cut down to 68x84: a perforated frame in the stamp-frame
 // colour, a field of card stock with a level-3 tint in the stock's own ink,
@@ -373,21 +373,11 @@ export function stamp(entry, index, s, opts = {}) {
   })
 }
 
-/** A drawer tab: a 12 unit swatch of card stock with its level-3 tint. */
-export function tab(name, s) {
-  const stock = s.stocks[name]
-  const tone = tones({ tiers: [] })
-  // the lattice is set in by one unit, so the seven dots sit square in the swatch
-  const body = `<rect width="12" height="12" fill="${stock.paper}"/><g transform="translate(1 1)"><rect x="-1" y="-1" width="12" height="12" class="${tone(3, stock.ink)}"/></g>`
-  return doc({ width: 12, height: 12, title: `${name} stock`, defs: tone.defs(), css: tone.css(), body })
-}
-
 export default function print({ content, stocks, themes }) {
   const files = []
   content.stamps.forEach((entry, i) => {
     for (const theme of themes)
       files.push({ name: `stamp-${pad2(i + 1)}-${entry.key}-${theme}.svg`, body: stamp(entry, i, stocks[theme]) })
   })
-  for (const name of ["terracotta", "teal", "stone"]) files.push({ name: `tab-${name}.svg`, body: tab(name, stocks.dark) })
   return files
 }

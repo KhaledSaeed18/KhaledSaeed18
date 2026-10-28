@@ -1,5 +1,5 @@
 // Code 128 (set B), the barcode on shop receipts. Ported from the site's
-// lib/code128.ts so the receipt here scans the same way. Each symbol is six
+// lib/code128.ts so the postcard here scans the same way. Each symbol is six
 // alternating bar and space widths in modules; the stop symbol has seven.
 const PATTERNS = [
   "212222", "222122", "222221", "121223", "121322", "131222", "122213", "122312",

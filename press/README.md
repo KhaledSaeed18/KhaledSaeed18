@@ -19,9 +19,7 @@ Between 01:00 and 07:00 Beirut time the press stops, the same hours the portrait
 | `rule.mjs` | the four section rules | static |
 | `ks30.mjs` | the stack as a 30-pin chip, from the site's datasheet | static |
 | `postcard.mjs` | the reply postcard, with a scannable sorting barcode | static |
-| `stamps.mjs` | the pane of link stamps and the drawer tabs | static |
-| `receipt.mjs` | a thermal receipt of the printing, plus `receipt.txt` | static |
-| `plates.mjs` | the masthead separated into its five plates | fans out and back into register |
+| `stamps.mjs` | the pane of link stamps | static |
 | `slug.mjs` | the colour bar: commits by hour of day in Beirut (`lib/hours.mjs`) | static |
 
 Each sheet exports `print(ctx)` and returns its files. Shared pieces live in `lib/`: `type.mjs` (outlines, and a glyph atlas so each letter is cut once), `dither.mjs` (tones as patterns, with coarser lattices when GitHub scales a sheet down), `sheet.mjs` (rules, rails, registration and crop marks), `palette.mjs`, `glyphs.mjs` (the site's two-plate icons), `mark.mjs` (the K), `code128.mjs`, `sprite.mjs` and `png.mjs` (an indexed PNG encoder and decoder, so the build needs nothing but Node).

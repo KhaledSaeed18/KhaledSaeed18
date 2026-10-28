@@ -24,7 +24,6 @@ function pull(name, { width = "100%", alt = "", href, title } = {}) {
   const pic = `<picture><source media="(prefers-color-scheme: light)" srcset="${PRINTS}/${name}-light.svg"><img src="${PRINTS}/${name}-dark.svg" width="${width}" alt="${attr(alt)}"></picture>`
   return href ? `<a href="${attr(href)}"${title ? ` title="${attr(title)}"` : ""}>${pic}</a>` : pic
 }
-const one = (file, { width, alt = "" }) => `<picture><img src="${PRINTS}/${file}" width="${width}" alt="${attr(alt)}"></picture>`
 
 const pad = (n) => String(n).padStart(2, "0")
 
@@ -99,19 +98,9 @@ ${datasheet.lede}
 
 <p align="center">${pull("ks30", { width: 560, href: `${identity.url}/#stack`, title: `figure 1. pin configuration, dip-${total}, top view`, alt: chipAlt })}</p>
 
-${nc ? `<!-- pin ${total} is not connected. it is reserved for whatever comes next. -->\n` : ""}<details><summary><samp>pin descriptions</samp></summary>
-<br>
+${nc ? `<!-- pin ${total} is not connected. it is reserved for whatever comes next. -->
 
-${stack
-  .map((l) => {
-    const [a, b] = l.range
-    return `<samp>${a === b ? pad(a) : `${pad(a)} to ${pad(b)}`}</samp>&ensp;${l.layer.toLowerCase()}: ${l.items.join(", ")}<br>`
-  })
-  .join("\n")}${nc ? `\n<samp>${pad(total)}</samp>&ensp;nc: not connected. Reserved for whatever comes next.` : ""}
-
-</details>
-
-<samp>features</samp>
+` : ""}<samp>features</samp>
 
 ${principles.map((p, i) => `<samp>${pad(i + 1)}</samp>&ensp;**${p.title}.**<br>\n${p.body}`).join("\n\n")}
 
@@ -134,45 +123,8 @@ ${pull("postcard", {
 ${stamps.map((s, i) => pull(`stamp-${pad(i + 1)}-${s.key}`, { width: 68, href: s.href, title: s.title, alt: s.alt })).join("\n")}
 </p>
 
-<!-- sheet 04. the colophon: three drawers, one open at a time -->
+<!-- sheet 04. the colophon -->
 ${pull("rule-04")}
-
-<details name="cabinet"><summary>${one("tab-terracotta.svg", { width: 12 })}&ensp;<samp>the receipt</samp>&ensp;<sub>how this page was printed, itemised</sub></summary>
-<br>
-
-<p align="center">${pull("receipt", {
-  width: 320,
-  alt: "A thermal receipt for this page: when and by which run it was printed in Beirut, what it is made of (five sheets, five plates, seventeen tones, no rounded corners, em dashes or emoji), the fonts and the dither, the year's contributions as GitHub counts them below, and a barcode for khaledsaeed.tech.",
-})}</p>
-
-<p align="center"><sub><a href="${PRINTS}/receipt.txt">read it as text</a></sub></p>
-
-</details>
-
-<details name="cabinet"><summary>${one("tab-teal.svg", { width: 12 })}&ensp;<samp>the plates</samp>&ensp;<sub>the masthead, separated</sub></summary>
-<br>
-
-${pull("plates", {
-  alt: "The masthead separated into its five plates, from the bottom: paper, rules, teal, terracotta and ink. They slide into register and apart again.",
-})}
-
-Five plates, laid down in this order: paper, rules, teal, terracotta, ink. The teal plate holds only the targets the terracotta plate has to land on. On the site, press <kbd>x</kbd> to do this to any page.
-
-</details>
-
-<details name="cabinet"><summary>${one("tab-stone.svg", { width: 12 })}&ensp;<samp>things to find</samp>&ensp;<sub>the press keeps a few</sub></summary>
-<br>
-
-<samp>01</samp>&ensp;The source of this page has a back room.<br>
-<samp>02</samp>&ensp;Come back between 01:00 and 07:00, Beirut time.<br>
-<samp>03</samp>&ensp;Switch GitHub to its light theme and hold the masthead to the light.<br>
-<samp>04</samp>&ensp;The top rule of the masthead is not a rule.<br>
-<samp>05</samp>&ensp;The postcard's sorting label scans.<br>
-<samp>06</samp>&ensp;The colour bar below is off register.<br>
-<samp>07</samp>&ensp;Pin ${total} is not connected.<br>
-<samp>08</samp>&ensp;On ${identity.site}, press <kbd>?</kbd> for the rest.
-
-</details>
 
 <!-- the slug: the colour bar at the tail of the sheet -->
 ${pull("slug", {

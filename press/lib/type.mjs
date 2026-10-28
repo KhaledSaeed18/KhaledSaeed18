@@ -75,7 +75,7 @@ export function text(
 /**
  * A sheet's type case: every glyph is cut once, in <defs>, and each letter
  * on the sheet is a <use> of it. Far smaller than outlining every letter
- * when a sheet sets a lot of type (labels, the receipt, microprint).
+ * when a sheet sets a lot of type (labels, microprint).
  *
  *   const t = atlas()
  *   t("02 datasheet", { face: "mono", size: 13, x: 48, y: 28, fill })

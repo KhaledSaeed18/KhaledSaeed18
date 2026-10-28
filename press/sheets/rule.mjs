@@ -12,7 +12,7 @@ const RULES = [
   ["01", "about", "sheet 01 of 04"],
   ["02", "datasheet", "ks-30 / rev {year}"],
   ["03", "contact", "posted from lebanon"],
-  ["04", "colophon", "one drawer at a time"],
+  ["04", "colophon", "pulled every hour in beirut"],
 ]
 
 export default function print({ stocks, themes, clock }) {

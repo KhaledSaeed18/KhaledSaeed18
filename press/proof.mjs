@@ -24,14 +24,11 @@ const strict = process.argv.includes("--strict")
 // KB, per printed file; night editions of the masthead are smaller
 const BUDGET = [
   [/^masthead-/, 170],
-  [/^plates-/, 130],
-  [/^receipt-/, 80],
   [/^postcard-/, 80],
   [/^ks30-/, 70],
   [/^slug-/, 50],
   [/^rule-/, 12],
   [/^stamp-/, 12],
-  [/^tab-/, 2],
 ]
 
 const errors = []

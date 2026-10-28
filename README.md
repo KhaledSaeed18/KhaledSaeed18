@@ -51,18 +51,6 @@ TypeScript end to end, Swift when it belongs on the Mac, and whatever the proble
 <p align="center"><a href="https://khaledsaeed.tech/#stack" title="figure 1. pin configuration, dip-30, top view"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/ks30-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/ks30-dark.svg" width="560" alt="Figure 1, the stack drawn as a 30-pin chip, KS-30. Interface: React, Next.js, TanStack, Tailwind CSS, shadcn/ui. Services: Node.js, NestJS, Express, Hono, FastAPI. Native: Swift, SwiftUI, Rust, React Native, Electron. Data: PostgreSQL, Prisma, MongoDB, SQLite, MySQL. Tooling: TypeScript, Go, Python, Docker, GitHub Actions. Intelligence: AI SDK, Claude Code, Transformers.js, Hugging Face. Pin 30 is not connected."></picture></a></p>
 
 <!-- pin 30 is not connected. it is reserved for whatever comes next. -->
-<details><summary><samp>pin descriptions</samp></summary>
-<br>
-
-<samp>01 to 05</samp>&ensp;interface: React, Next.js, TanStack, Tailwind CSS, shadcn/ui<br>
-<samp>06 to 10</samp>&ensp;services: Node.js, NestJS, Express, Hono, FastAPI<br>
-<samp>11 to 15</samp>&ensp;native: Swift, SwiftUI, Rust, React Native, Electron<br>
-<samp>16 to 20</samp>&ensp;data: PostgreSQL, Prisma, MongoDB, SQLite, MySQL<br>
-<samp>21 to 25</samp>&ensp;tooling: TypeScript, Go, Python, Docker, GitHub Actions<br>
-<samp>26 to 29</samp>&ensp;intelligence: AI SDK, Claude Code, Transformers.js, Hugging Face<br>
-<samp>30</samp>&ensp;nc: not connected. Reserved for whatever comes next.
-
-</details>
 
 <samp>features</samp>
 
@@ -100,40 +88,8 @@ Email is the fastest way to reach me, at [contact@khaledsaeed.tech](mailto:conta
 <a href="https://discord.com/users/1496301841774805004" title="discord / khaledsaeed18"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/stamp-08-discord-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/stamp-08-discord-dark.svg" width="68" alt="Discord: khaledsaeed18"></picture></a>
 </p>
 
-<!-- sheet 04. the colophon: three drawers, one open at a time -->
+<!-- sheet 04. the colophon -->
 <picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-04-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-04-dark.svg" width="100%" alt=""></picture>
-
-<details name="cabinet"><summary><picture><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/tab-terracotta.svg" width="12" alt=""></picture>&ensp;<samp>the receipt</samp>&ensp;<sub>how this page was printed, itemised</sub></summary>
-<br>
-
-<p align="center"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/receipt-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/receipt-dark.svg" width="320" alt="A thermal receipt for this page: when and by which run it was printed in Beirut, what it is made of (five sheets, five plates, seventeen tones, no rounded corners, em dashes or emoji), the fonts and the dither, the year's contributions as GitHub counts them below, and a barcode for khaledsaeed.tech."></picture></p>
-
-<p align="center"><sub><a href="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/receipt.txt">read it as text</a></sub></p>
-
-</details>
-
-<details name="cabinet"><summary><picture><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/tab-teal.svg" width="12" alt=""></picture>&ensp;<samp>the plates</samp>&ensp;<sub>the masthead, separated</sub></summary>
-<br>
-
-<picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/plates-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/plates-dark.svg" width="100%" alt="The masthead separated into its five plates, from the bottom: paper, rules, teal, terracotta and ink. They slide into register and apart again."></picture>
-
-Five plates, laid down in this order: paper, rules, teal, terracotta, ink. The teal plate holds only the targets the terracotta plate has to land on. On the site, press <kbd>x</kbd> to do this to any page.
-
-</details>
-
-<details name="cabinet"><summary><picture><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/tab-stone.svg" width="12" alt=""></picture>&ensp;<samp>things to find</samp>&ensp;<sub>the press keeps a few</sub></summary>
-<br>
-
-<samp>01</samp>&ensp;The source of this page has a back room.<br>
-<samp>02</samp>&ensp;Come back between 01:00 and 07:00, Beirut time.<br>
-<samp>03</samp>&ensp;Switch GitHub to its light theme and hold the masthead to the light.<br>
-<samp>04</samp>&ensp;The top rule of the masthead is not a rule.<br>
-<samp>05</samp>&ensp;The postcard's sorting label scans.<br>
-<samp>06</samp>&ensp;The colour bar below is off register.<br>
-<samp>07</samp>&ensp;Pin 30 is not connected.<br>
-<samp>08</samp>&ensp;On khaledsaeed.tech, press <kbd>?</kbd> for the rest.
-
-</details>
 
 <!-- the slug: the colour bar at the tail of the sheet -->
 <a href="https://khaledsaeed.tech/register" title="off register by 3 units"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/slug-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/slug-dark.svg" width="100%" alt="Press hours: the last year's commits by hour of day in Beirut, printed as dithered terracotta patches, darker for busier hours, with the portrait's sleeping hours, 01:00 to 07:00, bracketed in teal."></picture></a>

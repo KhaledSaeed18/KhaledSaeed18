@@ -7,7 +7,7 @@
 // Shown at width 560 in the README: 1:1 on desktop, about 0.55x on a phone.
 // There the labels grow, the leads get shorter and stouter on a coarser
 // lattice (the site's own phone stubs), and the fine print (pin numbers,
-// markings, legend) gives way to the real-text drawer under the image.
+// markings, legend) is left to the image's alt text.
 import { cells } from "../lib/dither.mjs"
 import { kMark } from "../lib/mark.mjs"
 import { cropMarks, doc, rect } from "../lib/sheet.mjs"

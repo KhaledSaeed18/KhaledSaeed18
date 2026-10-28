@@ -1,7 +1,7 @@
 // The one number the press prints from GitHub: the year's contributions,
 // the same figure GitHub's own calendar shows under the README. Read with
 // the workflow's token (or the gh CLI locally); if GitHub is down, the last
-// printing's figure is reused and the receipt says so.
+// printing's figure is reused.
 import { execFileSync } from "node:child_process"
 
 const QUERY = `query($login: String!) { user(login: $login) { createdAt contributionsCollection { contributionCalendar { totalContributions } } } }`

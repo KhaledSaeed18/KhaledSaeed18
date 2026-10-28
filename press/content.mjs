@@ -86,7 +86,7 @@ export const stamps = [
   { key: "discord", label: "discord", glyph: "discord", stock: "stone", plate: "terracotta", href: "https://discord.com/users/1496301841774805004", title: "discord / khaledsaeed18", alt: "Discord: khaledsaeed18" },
 ]
 
-// The page itself, for the receipt and the source's back room. The bytes
+// The source's back room. The bytes
 // spell the site's unlinked page, as its console puzzle does
 // (components/console-proof.tsx).
 export const secret = "/register"
