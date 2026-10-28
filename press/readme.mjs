@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 
 import { about, contact, datasheet, identity, principles, secret, stack, stamps } from "./content.mjs"
+import { part } from "./lib/part.mjs"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
 export const PRINTS = "https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints"
@@ -27,21 +28,18 @@ function pull(name, { width = "100%", alt = "", href, title } = {}) {
 
 const pad = (n) => String(n).padStart(2, "0")
 
-// pins in the datasheet's order; an odd count leaves the last pin unconnected
-const pins = []
-stack.forEach((l) => {
-  const from = pins.length + 1
-  pins.push(...l.items)
-  l.range = [from, pins.length]
-})
-const total = pins.length + (pins.length % 2)
-const nc = total > pins.length
+// the chip on sheet 02: one pin per tool, made up to a multiple of four
+const chip = part(stack)
+const ncComment =
+  chip.nc === 1
+    ? `pin ${chip.total} is not connected. it is reserved for whatever comes next.`
+    : `pins ${chip.count + 1} to ${chip.total} are not connected. they are reserved for whatever comes next.`
 
 const bits = [...secret].map((c) => c.charCodeAt(0).toString(2).padStart(8, "0")).join(" ")
 
-const chipAlt = `Figure 1, the stack drawn as a ${total}-pin chip, KS-${total}. ${stack
+const chipAlt = `Figure 1, the stack drawn as a ${chip.total}-pin chip, ${chip.name}. ${stack
   .map((l) => `${l.layer}: ${l.items.join(", ")}.`)
-  .join(" ")}${nc ? ` Pin ${total} is not connected.` : ""}`
+  .join(" ")}${chip.ncNote ? ` ${chip.ncNote}` : ""}`
 
 export function readme() {
   return `<!--
@@ -96,9 +94,9 @@ ${pull("rule-02")}
 
 ${datasheet.lede}
 
-<p align="center">${pull("ks30", { width: 560, href: `${identity.url}/#stack`, title: `figure 1. pin configuration, dip-${total}, top view`, alt: chipAlt })}</p>
+${pull("chip", { href: `${identity.url}/#stack`, title: `figure 1. pin configuration, ${chip.pkg}, top view`, alt: chipAlt })}
 
-${nc ? `<!-- pin ${total} is not connected. it is reserved for whatever comes next. -->
+${chip.nc ? `<!-- ${ncComment} -->
 
 ` : ""}<samp>features</samp>
 

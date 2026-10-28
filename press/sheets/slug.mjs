@@ -10,6 +10,7 @@
 // Static. Hourly for the job line; the hours themselves change once a day.
 import { beirut } from "../lib/clock.mjs"
 import { pressHours, pressWeeks } from "../lib/hours.mjs"
+import { part } from "../lib/part.mjs"
 import { cropMarks, doc, rect, vRule } from "../lib/sheet.mjs"
 import { measure } from "../lib/type.mjs"
 import { patcher, toneRegistry, typeCase } from "./_slug-kit.mjs"
@@ -60,7 +61,7 @@ export default async function print(ctx) {
   // the job line: what a printer would read off the tail of the sheet
   const stale = [ctx.data?.stale && ctx.data.fetched, hours?.stale && hours.fetched].filter(Boolean).sort()[0]
   const job = [
-    "ks-30",
+    part(content.stack).name.toLowerCase(), // the job: the chip on sheet 02
     `ed. ${ctx.edition || "local"}`,
     `printing ${ctx.printing}`,
     `pulled ${clock.date}, ${clock.clock} beirut`,

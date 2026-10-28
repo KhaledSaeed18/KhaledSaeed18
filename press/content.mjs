@@ -18,6 +18,8 @@ export const identity = {
   headline: ["Khaled Saeed", "builds software that", "explains itself."],
   // .github/assets/readme-header.png
   focus: "interfaces / backends / developer tools",
+  // lib/site.ts profileUpdatedAt: the datasheet's revision, the same on the site and here
+  revised: "2026-10-28",
   // the GitHub bio, corrected in proof in the README
   bio: "I tell computers what to do and sometimes they listen!",
 }
@@ -33,12 +35,14 @@ export const about = {
 
 // lib/content/profile.ts: stack, in pin order
 export const stack = [
-  { layer: "Interface", items: ["React", "Next.js", "TanStack", "Tailwind CSS", "shadcn/ui"] },
-  { layer: "Services", items: ["Node.js", "NestJS", "Express", "Hono", "FastAPI"] },
-  { layer: "Native", items: ["Swift", "SwiftUI", "Rust", "React Native", "Electron"] },
-  { layer: "Data", items: ["PostgreSQL", "Prisma", "MongoDB", "SQLite", "MySQL"] },
-  { layer: "Tooling", items: ["TypeScript", "Go", "Python", "Docker", "GitHub Actions"] },
-  { layer: "Intelligence", items: ["AI SDK", "Claude Code", "Transformers.js", "Hugging Face"] },
+  { layer: "Interface", items: ["React", "Next.js", "TanStack", "Tailwind CSS", "shadcn/ui", "Vite", "Redux", "Zustand", "Jotai", "React Hook Form", "Motion"] },
+  { layer: "Services", items: ["Node.js", "NestJS", "Express", "Hono", "FastAPI", "Bun", "Django", "GraphQL", "Apollo", "WebSockets", "BullMQ", "Zod", "Pydantic", "OpenAPI", "JWT", "Clerk", "Resend"] },
+  { layer: "Native", items: ["Swift", "SwiftUI", "Rust", "React Native", "Electron", "Expo", "Flutter", "Riverpod", "GNOME"] },
+  { layer: "Data", items: ["PostgreSQL", "Prisma", "MongoDB", "SQLite", "MySQL", "Redis", "Mongoose", "TypeORM", "SQLAlchemy", "Neon", "Supabase", "Payload CMS"] },
+  { layer: "Tooling", items: ["TypeScript", "Go", "Python", "Docker", "GitHub Actions", "JavaScript", "Dart", "C", "Git", "pnpm", "Turborepo"] },
+  { layer: "Intelligence", items: ["AI SDK", "Claude Code", "Transformers.js", "Hugging Face", "Claude", "OpenAI", "Gemini", "Mistral", "Qwen", "Ollama", "LangChain", "n8n", "GitHub Copilot", "Codex", "Cursor"] },
+  { layer: "Platform", items: ["Linux", "Vercel", "Cloudflare", "AWS", "Google Cloud", "Coolify", "Traefik", "Nginx", "Render", "Sentry", "PostHog", "Grafana", "Datadog"] },
+  { layer: "Quality", items: ["Vitest", "Playwright", "Jest", "MSW", "ESLint", "Prettier", "Biome", "Husky"] },
 ]
 
 // components/home/datasheet.tsx

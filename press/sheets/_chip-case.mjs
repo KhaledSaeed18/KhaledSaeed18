@@ -1,12 +1,12 @@
 // The chip's type case. Same faces, kerning and tracking as lib/type.mjs,
-// set three levels deep so a figure with sixty labels stays small:
+// set three levels deep so a figure with a hundred labels stays small:
 //
 //   glyph  each outline cut once, on a 250 unit em, as compact relative path data
 //   run    each string set once, as a <g> of glyph <use>s at pen offsets
 //   block  every run of one face, size and ink placed in one scaled <g>
 //
-// A run is size-free, so the phone layout reprints the desktop's labels at
-// its own size without setting a single letter again.
+// A run is size-free, so one string printed at two sizes (a legend row on
+// the desktop and on the phone) is set only once.
 import { faces } from "../lib/type.mjs"
 
 const EM = 1000 // every face in press/fonts is cut on a 1000 unit em

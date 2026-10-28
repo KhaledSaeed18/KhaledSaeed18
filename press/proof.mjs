@@ -25,7 +25,7 @@ const strict = process.argv.includes("--strict")
 const BUDGET = [
   [/^masthead-/, 170],
   [/^postcard-/, 80],
-  [/^ks30-/, 70],
+  [/^chip-/, 100],
   [/^slug-/, 50],
   [/^rule-/, 12],
   [/^stamp-/, 12],

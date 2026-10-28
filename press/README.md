@@ -17,7 +17,7 @@ Between 01:00 and 07:00 Beirut time the press stops, the same hours the portrait
 | --- | --- | --- |
 | `masthead.mjs` | the hero: name, thesis, the portrait | the plates land in register, he waves once, then breathes and blinks; at night he dozes and the moon turns |
 | `rule.mjs` | the four section rules | static |
-| `ks30.mjs` | the stack as a 30-pin chip, from the site's datasheet | static |
+| `chip.mjs` | the stack as a quad flat package, one pin per tool, from the site's datasheet | static |
 | `postcard.mjs` | the reply postcard, with a scannable sorting barcode | static |
 | `stamps.mjs` | the pane of link stamps | static |
 | `slug.mjs` | the colour bar: commits by hour of day in Beirut (`lib/hours.mjs`) | static |

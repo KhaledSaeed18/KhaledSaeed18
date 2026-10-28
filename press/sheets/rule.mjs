@@ -2,6 +2,7 @@
 // perforation that crosses the rails at registration marks. Transparent, so
 // GitHub's page shows through; the rails sit at the same x on every
 // full-width sheet, so they run on down the page.
+import { part } from "../lib/part.mjs"
 import { doc, hRule, regMark, vRule } from "../lib/sheet.mjs"
 import { atlas, measure } from "../lib/type.mjs"
 
@@ -10,19 +11,20 @@ export const RAILS = [36, 810]
 
 const RULES = [
   ["01", "about", "sheet 01 of 04"],
-  ["02", "datasheet", "ks-30 / rev {year}"],
+  ["02", "datasheet", "{part} / rev {year}"], // the chip's part number, counted from the stack
   ["03", "contact", "posted from lebanon"],
   ["04", "colophon", "pulled every hour in beirut"],
 ]
 
-export default function print({ stocks, themes, clock }) {
+export default function print({ content, stocks, themes, clock }) {
+  const partNo = part(content.stack).name.toLowerCase()
   const files = []
   for (const [index, name, meta] of RULES)
     for (const theme of themes) {
       const s = stocks[theme]
       const text = atlas()
       const H = 56
-      const metaText = meta.replace("{year}", clock.year)
+      const metaText = meta.replace("{part}", partNo).replace("{year}", content.identity.revised.slice(0, 4))
       // desktop: mono 13 at 1:1; phone (308px column, 0.36x): mono 30, about 11px
       const label = (size, y) => {
         const slash = text("//", { face: "mono", size, x: 48, y, fill: s.brand })

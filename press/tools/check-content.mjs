@@ -34,6 +34,7 @@ same("stack", stack, ours.stack)
 same("principles", principles, ours.principles)
 same("email", socialLinks.find((l) => l.key === "email")?.handle, ours.identity.email)
 same("booking", siteConfig.bookingUrl, ours.identity.booking)
+same("revised", siteConfig.profileUpdatedAt, ours.identity.revised)
 for (const l of socialLinks.filter((l) => l.key !== "email" && l.key !== "github")) {
   const stamp = ours.stamps.find((s) => s.href === l.href)
   if (!stamp) {
