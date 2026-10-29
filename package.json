@@ -4,7 +4,6 @@
   "type": "module",
   "scripts": {
     "build": "node press/build.mjs",
-    "build:night": "node press/build.mjs --at 2026-10-28T23:30:00Z",
     "proof": "node press/proof.mjs dist README.md --readme",
     "readme": "node press/readme.mjs --write",
     "preview": "node press/tools/preview.mjs",

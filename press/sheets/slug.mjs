@@ -2,7 +2,7 @@
 // strip the printer reads, not the reader: a registration target, a tone
 // scale to check the ink against, and the job line. This one also carries
 // the press hours, the last year's commits by the hour of day they were
-// written in Beirut, under the hours the portrait keeps asleep.
+// written in Beirut.
 //
 // The target is printed off register on purpose: the README links it to the
 // site's registration test (/register), the third key to that door.
@@ -22,8 +22,6 @@ const L = 48 // the column the rules and the masthead set from
 const R = 798 // and where they end
 // the misprint, in units: hypot(2.4, 1.8) = 3, as the README's title says
 const OFF = [2.4, -1.8]
-// the portrait's bedtime (components/dither-character.tsx): 01:00 to 07:00
-const ASLEEP = [1, 6]
 
 const n = (v) => +(+v).toFixed(2)
 // A patch holds ink in proportion to its count, the busiest at 16 of 16 dots
@@ -159,8 +157,7 @@ const PHONE = { y: 26, h: 36, bar: 67, lines: [101, 133], size: 28 }
 function pressHoursSheet({ hours, job, ...kit }) {
   const { s, t, tone } = kit
   const { hours: counts, total, scope } = hours
-  const asleep = counts.slice(ASLEEP[0], ASLEEP[1] + 1).reduce((a, b) => a + b, 0)
-  const disagrees = asleep / total > 0.12
+  const busiest = `${pad2(counts.indexOf(Math.max(...counts)))}:00`
   const hx = (i) => HOURS.x + i * HOURS.pitch
   const xs = counts.map((_, i) => hx(i))
 
@@ -172,32 +169,18 @@ function pressHoursSheet({ hours, job, ...kit }) {
   d.push(patches(kit, tone.d, counts, xs, HOURS.w, ROW.y, ROW.h))
   for (let h = 0; h < 24; h += 3) d.push(t(pad2(h), { face: "mono", size: 9, x: hx(h) + HOURS.w / 2, y: 88, anchor: "middle", fill: s.muted }))
 
-  // the bedtime bracket, set like a dimension line: |-- portrait asleep --|
-  const bx0 = hx(ASLEEP[0])
-  const bx1 = hx(ASLEEP[1]) + HOURS.w
-  const label = "portrait asleep"
-  const lw = measure(label, { face: "mono", size: 9 })
-  const mid = (bx0 + bx1) / 2
-  const by = 39.5
-  d.push(
-    `<path d="M${bx0 + 0.5} 44V${by}H${n(mid - lw / 2 - 4)}M${n(mid + lw / 2 + 4)} ${by}H${bx1 - 0.5}V44" fill="none" stroke="${s.teal}" stroke-width="1" shape-rendering="crispEdges"/>`
-  )
-  d.push(t(label, { face: "mono", size: 9, x: mid, y: by + 2.5, anchor: "middle", fill: s.teal }))
-
   const commits = scope === "all" ? "commits" : "public commits"
   d.push(t(`press hours, beirut time. ${fmtInt(total)} ${commits} in the last year; darker patch, busier hour.`, { face: "mono", size: 12, x: L, y: 116, fill: s.muted }))
-  const first = "the portrait sleeps 01:00 to 07:00. "
+  const first = "busiest hour: "
   d.push(t(first, { face: "mono", size: 12, x: L, y: 134, fill: s.muted }))
-  d.push(t(disagrees ? "the commit log disagrees." : "so, mostly, does the press.", { face: "mono", size: 12, x: L + measure(first, { face: "mono", size: 12 }), y: 134, fill: s.type }))
+  d.push(t(`${busiest}.`, { face: "mono", size: 12, x: L + measure(first, { face: "mono", size: 12 }), y: 134, fill: s.type }))
 
   // -- phone: the patches and two lines, at about 10 CSS px
   const m = []
   const ph = spread(24, L, R, 24)
   m.push(patches(kit, tone.m, counts, ph.xs, ph.w, PHONE.y, PHONE.h))
-  // the bedtime, as a teal rule under its six hours
-  m.push(rect(ph.xs[ASLEEP[0]], PHONE.bar, ph.xs[ASLEEP[1]] + ph.w - ph.xs[ASLEEP[0]], 3, { fill: s.teal }))
-  m.push(t("01:00 to 07:00, the portrait sleeps.", { face: "mono", size: PHONE.size, x: L, y: PHONE.lines[0], fill: s.muted }))
-  m.push(t(disagrees ? "the commit log disagrees." : "so, mostly, does the press.", { face: "mono", size: PHONE.size, x: L, y: PHONE.lines[1], fill: s.type }))
+  m.push(t("press hours, beirut time.", { face: "mono", size: PHONE.size, x: L, y: PHONE.lines[0], fill: s.muted }))
+  m.push(t(`busiest hour: ${busiest}.`, { face: "mono", size: PHONE.size, x: L, y: PHONE.lines[1], fill: s.type }))
 
   return `<g class="d">${d.join("")}</g><g class="m">${m.join("")}</g>`
 }
@@ -254,8 +237,7 @@ function colourBarSheet({ job, ...kit }) {
 function describe({ hours, weeks, job }) {
   if (hours) {
     const busiest = hours.hours.indexOf(Math.max(...hours.hours))
-    const asleep = hours.hours.slice(ASLEEP[0], ASLEEP[1] + 1).reduce((a, b) => a + b, 0)
-    return `Press hours: ${fmtInt(hours.total)} ${hours.scope === "all" ? "" : "public "}commits in the last year by hour of day in Beirut, busiest at ${pad2(busiest)}:00; ${Math.round((100 * asleep) / hours.total)}% of them between 01:00 and 07:00, while the portrait sleeps. ${job}.`
+    return `Press hours: ${fmtInt(hours.total)} ${hours.scope === "all" ? "" : "public "}commits in the last year by hour of day in Beirut, busiest at ${pad2(busiest)}:00. ${job}.`
   }
   if (weeks) return `Press weeks: ${fmtInt(weeks.total)} contributions in the last year, by week. ${job}.`
   return `The colour bar: a registration target, off register, and three tone scales. ${job}.`

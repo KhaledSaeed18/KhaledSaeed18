@@ -33,7 +33,7 @@ const MODULE = 1.75 // 398 modules + 2 x 10 of quiet zone = 731.5 units
 // phone: the message side goes, the address grows to mono 40
 const M = { to: 60, address: [150, 212, 274], size: 40, live: 314, liveSize: 28, stamp: 1.2 }
 
-export default function print({ stocks, themes, clock, night, content }) {
+export default function print({ stocks, themes, clock, content }) {
   const { identity, secret } = content
   const url = `${identity.url}${secret}`
   const files = []
@@ -45,9 +45,7 @@ export default function print({ stocks, themes, clock, night, content }) {
     const tone = tones({ tiers: [[760, 3], [500, 4]] })
     const terra = s.stocks.terracotta
     // the live line leads with the site's "now" marker: a square, half the type size
-    const live = night
-      ? { copy: "night in beirut. replies after 07:00.", fill: s.muted, mark: s.teal }
-      : { copy: `replies from beirut, ${clock.offset}.`, fill: s.muted, mark: s.brand }
+    const live = { copy: `replies from beirut, ${clock.offset}.`, fill: s.muted, mark: s.brand }
     const liveLine = (x, y, size) => {
       const q = size / 2
       const top = Math.round(y - metrics("mono", size).xHeight / 2 - q / 2 - 0.5)
@@ -153,7 +151,7 @@ export default function print({ stocks, themes, clock, night, content }) {
         width: W,
         height: H,
         title: "a reply postcard",
-        desc: `A reply postcard addressed to ${identity.name}, ${identity.email}, ${identity.location}, with a terracotta stamp bearing the K mark, a postmark from Lebanon dated ${clock.date} and a sorting barcode. ${night ? "Night in Beirut: replies after 07:00." : `Replies from Beirut, ${clock.offset.toUpperCase()}.`}`,
+        desc: `A reply postcard addressed to ${identity.name}, ${identity.email}, ${identity.location}, with a terracotta stamp bearing the K mark, a postmark from Lebanon dated ${clock.date} and a sorting barcode. Replies from Beirut, ${clock.offset.toUpperCase()}.`,
         defs: t.defs() + tone.defs() + postmark.defs,
         // the 578 column (laptops) sets the small mono labels about 10 px; below
         // 760 the dated box of the cancel would be 7 px type, so only its bars stay

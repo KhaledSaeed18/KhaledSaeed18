@@ -1,14 +1,10 @@
 // Sheet 00, the masthead: the site's hero, pulled on a press while you
 // watch. Paper first, then the plates land in press order: rules, the teal
 // targets, terracotta sliding home into register over them, and the ink
-// rising last. Then the portrait waves once and holds your eye.
+// rising last. Then the portrait waves once and holds your eye. The same
+// sheet at every hour: nothing on it depends on the clock.
 //
-// From 01:00 to 07:00 in Beirut the press stops. The night edition has no
-// pull: he sleeps, the second plate prints in teal, the site's moon turns
-// and the K rests. Click it and you land on the site, where he is asleep
-// too, and a click there wakes him.
-//
-// Plates, bottom to top (layers() hands them to the plates sheet):
+// Plates, bottom to top:
 //   paper       the stock, its chain lines and watermark (bone shows it)
 //   rules       rails, rules, microprint, crop marks
 //   teal        the targets the terracotta plate lands on
@@ -18,14 +14,14 @@ import { cropMarks, doc, hRule, rect, regMark, vRule } from "../lib/sheet.mjs"
 import { atlas, measure, metrics } from "../lib/type.mjs"
 import { tones } from "../lib/dither.mjs"
 import { kMark } from "../lib/mark.mjs"
-import { loadPortrait, objectStrip } from "../lib/sprite.mjs"
-import { objectImage, stripImages } from "./_masthead-sprite.mjs"
+import { loadPortrait } from "../lib/sprite.mjs"
+import { stripImages } from "./_masthead-sprite.mjs"
 
 export const W = 846
 export const H = 460
 export const RAILS = [36, 810]
 
-const P = "mh" // every id and class here, so the plates sheet can mount these layers beside its own
+const P = "mh" // prefixes every id and class on the sheet
 const TRIM = { x: 12, y: 12, w: 822, h: 436 }
 const RULES = [64, 392]
 const MICRO = [200, 560] // the stretch of the top rule that is type
@@ -33,24 +29,20 @@ const CELL = 2
 const BOX = { x: 572, y: 76 } // the portrait, 2 units a cell, standing on the trim
 const BLOCK = { x: 548, y: 140, w: 120, h: 252 }
 const GHOST = [28, -12] // the second plate, off the portrait by this much
-const REST = 50 // greet frame he holds still on (reduced motion, the plates)
-// the moon prints one strip pixel to a unit: the site keeps object dots at
-// whole numbers so they stay crisp (components/print/dither-object.tsx)
-const MOON = 112
-const GROUND = { x: 376, y: 230 } // open paper after "explains itself.", under "that"
+const REST = 50 // greet frame he rests on once the wave is done
 
 const MICROPRINT =
   "khaledsaeed18 / press sheet / this rule is type 3.2 units high / you found the microprint / the source of this page has a back room / "
 
-/** Everything on the sheet, plate by plate. `motion` false gives the resting day pull, still. */
-function plates(ctx, theme, { motion = true, night = ctx.night } = {}) {
+/** Everything on the sheet, plate by plate. */
+function plates(ctx, theme) {
   const s = ctx.stocks[theme]
   const { identity } = ctx.content
   const { cols, rows, sequences } = loadPortrait()
   const type = atlas(`${P}g`)
   const raw = tones()
   const tone = (level, color) => P + raw(level, color)
-  const second = night ? s.teal : s.brand
+  const second = s.brand
   const fw = cols * CELL
   const fh = rows * CELL
 
@@ -99,12 +91,11 @@ function plates(ctx, theme, { motion = true, night = ctx.night } = {}) {
   const teal = mark(s.teal)
 
   // ---- terracotta: the block and its fringe, the ghost, the K, the marks, the last line
-  const seq = night ? sequences.sleep.frames : motion ? sequences.greet.frames : [sequences.greet.frames[REST]]
+  const seq = sequences.greet.frames
   const ghostImages = stripImages(seq, { cols, rows, palette: [null, second], map: (v) => (v === 2 ? 1 : 0), cls: `${P}x` })
-  const animated = motion || night
-  const spriteGroup = (images) => `<g${animated && seq.length > 1 ? ` class="${P}s"` : ""}>${images}</g>`
+  const spriteGroup = (images) => `<g class="${P}s">${images}</g>`
   const win = (x, y, inner) => `<svg x="${x}" y="${y}" width="${fw}" height="${fh}" viewBox="0 0 ${fw} ${fh}" overflow="hidden">${inner}</svg>`
-  const flip = motion && !night ? `${P}k` : undefined
+  const flip = `${P}k`
   const terracotta = [
     rect(BLOCK.x - 20, BLOCK.y, 20, BLOCK.h, { class: tone(6, second) }),
     rect(BLOCK.x - 32, BLOCK.y, 12, BLOCK.h, { class: tone(2, second) }),
@@ -116,7 +107,7 @@ function plates(ctx, theme, { motion = true, night = ctx.night } = {}) {
     mark(s.brand),
   ].join("")
 
-  // ---- ink: the portrait, the type, the swatches, the state line
+  // ---- ink: the portrait, the type, the swatches
   const portraitImages = stripImages(seq, {
     cols,
     rows,
@@ -131,26 +122,10 @@ function plates(ctx, theme, { motion = true, night = ctx.night } = {}) {
         : rect(48 + i * 26, 410, 20, 20, { class: tone(level, s.headline) })
     )
     .join("")
-  const { clock } = ctx.clock
-  const stateDesk = night
-    ? mono("night in beirut. asleep till morning; click to wake.", { size: 12, x: 164, y: 425, fill: s.muted })
-    : spans(mono, [["printed ", s.muted], [clock, s.type], [" in beirut", s.muted]], { size: 13, x: 164, y: 425 })
-  const statePhone = night
-    ? spans(mono, [["asleep till ", s.muted], ["07:00", s.type]], { size: 28, x: 48, y: 430 })
-    : spans(mono, [["printed ", s.muted], [clock, s.type], [" in beirut", s.muted]], { size: 28, x: 48, y: 430 })
   const role = `${identity.role.toLowerCase()} / ${identity.location.toLowerCase()}`
-
-  let moon = ""
-  if (night) {
-    const img = objectImage(objectStrip("moon"), s.muted)
-    const at = moonSpot(sequences.sleep.frames, cols, rows)
-    const frames = img.width / img.height
-    moon = `<svg x="${at.x}" y="${at.y}" width="${MOON}" height="${MOON}" viewBox="0 0 ${MOON} ${MOON}" overflow="hidden"><image class="${P}n ${P}y" width="${MOON * frames}" height="${MOON}" preserveAspectRatio="none" href="${img.href}"/></svg>`
-  }
 
   const ink = [
     win(BOX.x, BOX.y, spriteGroup(portraitImages)),
-    moon,
     type(identity.headline[0], { face: "heading", size: 84, tracking: -0.025, x: 48, y: 170, fill: s.headline }),
     type(identity.headline[1], { face: "heading", size: 50, tracking: -0.025, x: 48, y: 236, fill: s.muted }),
     `<g class="${P}d">`,
@@ -158,11 +133,9 @@ function plates(ctx, theme, { motion = true, night = ctx.night } = {}) {
     mono(role, { size: 13, x: 798, y: 43, anchor: "end", fill: s.muted }),
     mono(identity.focus, { size: 14, x: 48, y: 344, fill: s.muted }),
     swatches,
-    stateDesk,
     `</g><g class="${P}m">`,
     mono(identity.site, { size: 30, x: 82, y: 49, fill: s.type }),
     mono(role, { size: 26, x: 48, y: 350, fill: s.muted }),
-    statePhone,
     `</g>`,
   ].join("")
 
@@ -175,27 +148,17 @@ function plates(ctx, theme, { motion = true, night = ctx.night } = {}) {
 
   const base = [
     raw.css().replace(/\.t/g, `.${P}t`).replace(/#t/g, `#${P}t`),
-    `.${P}m{display:none}.${P}x,.${P}y{image-rendering:pixelated}`,
-    // the moon's dots are one unit: below 1:1 they would beat, so it softens first
-    `@media (max-width:760px){.${P}y{image-rendering:auto}}`,
+    `.${P}m{display:none}.${P}x{image-rendering:pixelated}`,
     `@media (max-width:500px){.${P}d{display:none}.${P}m{display:inline}.${P}x{image-rendering:auto}}`,
   ].join("")
 
-  return { width: W, height: H, defs, css: base, paper, rules, teal, terracotta, ink, night, frames: seq.length }
+  return { width: W, height: H, defs, css: base, paper, rules, teal, terracotta, ink, frames: seq.length }
 }
 
-/** Day and night motion, on the plate groups and sprites of plates(). */
-function motionCss({ night, frames }) {
+/** The motion, on the plate groups and sprites of plates(). */
+function motionCss({ frames }) {
   const fh = loadPortrait().rows * CELL
   const ty = (f) => `translateY(${-f * fh}px)`
-  if (night) {
-    return [
-      `.${P}s{animation:${P}z 4s steps(${frames},jump-none) infinite alternate}`,
-      `@keyframes ${P}z{to{transform:${ty(frames - 1)}}}`,
-      `.${P}n{animation:${P}n 2.6s steps(16) infinite}`,
-      `@keyframes ${P}n{to{transform:translateX(${-MOON * 16}px)}}`,
-    ].join("")
-  }
   const wave = REST / 15 // frames 0..49 at 15 fps
   const hold = (frames - REST) / 15 // frames 50..139, back and forth
   const start = 1.3
@@ -217,18 +180,6 @@ function motionCss({ night, frames }) {
     `.${P}k{animation:${P}k 5s 1.6s cubic-bezier(.65,0,.35,1) infinite}`,
     `@keyframes ${P}k{0%{transform:scaleX(1)}14%{transform:scaleX(-1)}40%{transform:scaleX(-1)}54%{transform:scaleX(1)}100%{transform:scaleX(1)}}`,
   ].join("")
-}
-
-/** Type in runs of colour, set end to end on one baseline. */
-function spans(mono, runs, { size, x, y }) {
-  let pen = x
-  return runs
-    .map(([str, fill]) => {
-      const out = mono(str, { size, x: pen, y, fill })
-      pen += measure(str, { face: "mono", size })
-      return out
-    })
-    .join("")
 }
 
 /**
@@ -254,45 +205,12 @@ function microprint(type, { x0, x1, y, fill }) {
   }
 }
 
-/**
- * Where the moon goes at night: the first corner of the portrait box, then
- * of the sheet's open ground beside it, that no sleep frame (or its ghost)
- * inks within 8 units of an 84 unit square.
- */
-function moonSpot(frames, cols, rows) {
-  const busy = (x, y) => {
-    // portrait and ghost cells, in sheet units
-    for (const [ox, oy] of [[0, 0], GHOST]) {
-      const cx = Math.floor((x - BOX.x - ox) / CELL)
-      const cy = Math.floor((y - BOX.y - oy) / CELL)
-      if (cx < 0 || cy < 0 || cx >= cols || cy >= rows) continue
-      for (const f of frames) if (f[cy * cols + cx]) return true
-    }
-    return false
-  }
-  const clear = (x, y) => {
-    for (let yy = y - 8; yy < y + MOON + 8; yy += 2) for (let xx = x - 8; xx < x + MOON + 8; xx += 2) if (busy(xx, yy)) return false
-    return true
-  }
-  const fw = cols * CELL
-  const candidates = [
-    [BOX.x + fw - MOON, BOX.y], // top right of the portrait
-    [BOX.x, BOX.y], // top left
-    [TRIM.x + TRIM.w - 8 - MOON, RULES[0] + 8], // the sheet's top right corner, under the rule
-    [GROUND.x, GROUND.y],
-  ]
-  for (const [x, y] of candidates) if (clear(x, y) && x + MOON <= TRIM.x + TRIM.w - 8) return { x, y }
-  return GROUND
-}
-
 function sheet(ctx, theme) {
   const p = plates(ctx, theme)
   const { identity } = ctx.content
   const motion = motionCss(p)
   const title = `${identity.name} ${identity.headline.slice(1).join(" ")}`
-  const desc = p.night
-    ? `${title} Full-stack engineer in Lebanon: interfaces, backends and developer tools. Night in Beirut, so the dithered self-portrait is asleep under a turning moon; click to wake him on the site.`
-    : `${title} Full-stack engineer in Lebanon: interfaces, backends and developer tools, beside a 1-bit dithered self-portrait that waves hello. Printed ${ctx.clock.clock} in Beirut.`
+  const desc = `${title} Full-stack engineer in Lebanon: interfaces, backends and developer tools, beside a 1-bit dithered self-portrait that waves hello.`
   const plate = (n, body) => `<g class="${P}${n}">${body}</g>`
   return doc({
     width: W,
@@ -307,14 +225,4 @@ function sheet(ctx, theme) {
 
 export default function print(ctx) {
   return ctx.themes.map((theme) => ({ name: `masthead-${theme}.svg`, body: sheet(ctx, theme) }))
-}
-
-/**
- * The resting day masthead as five still plates, for the plates sheet:
- * paper + rules + teal + terracotta + ink, stacked in that order inside
- * one <svg> with `defs` and `css`, reproduce it (portrait on greet frame 50).
- */
-export function layers(ctx, theme) {
-  const { width, height, defs, css, paper, rules, teal, terracotta, ink } = plates(ctx, theme, { motion: false, night: false })
-  return { width, height, defs, css, paper, rules, teal, terracotta, ink }
 }

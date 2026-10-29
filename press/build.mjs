@@ -42,7 +42,6 @@ const data = arg("data")
 
 const ctx = {
   clock,
-  night: clock.night,
   at,
   edition,
   printing,
@@ -77,7 +76,6 @@ for (const file of sheets) {
 const state = {
   printed: at.toISOString(),
   beirut: `${clock.date} ${clock.clock} ${clock.offset}`,
-  night: clock.night,
   edition,
   printing,
   data: data ? { fetched: data.fetched, stale: !!data.stale } : null,
@@ -87,16 +85,13 @@ if (data) writeFileSync(`${out}data.json`, `${JSON.stringify(data, null, 2)}\n`)
 
 const pad = (s, n) => String(s).padEnd(n)
 for (const w of written) console.log(`${pad(w.name, 34)} ${(w.bytes / 1024).toFixed(1).padStart(7)} KB`)
-console.log(`printed ${state.beirut}${clock.night ? " (night edition)" : ""}, ed. ${edition || "local"}`)
+console.log(`printed ${state.beirut}, ed. ${edition || "local"}`)
 
 // for the workflow: did anything a visitor can see change since the last printing?
 if (process.env.GITHUB_OUTPUT && last) {
   const changed = written.some(({ name }) => !existsSync(last + name) || readFileSync(last + name, "utf8") !== readFileSync(out + name, "utf8"))
-  // the press stops at night: the night edition is pulled once, then left up till morning
-  const lastState = existsSync(`${last}state.json`) ? JSON.parse(readFileSync(`${last}state.json`, "utf8")) : null
-  const asleep = clock.night && lastState?.night === true
-  appendFileSync(process.env.GITHUB_OUTPUT, `publish=${changed && !asleep ? "yes" : "no"}\n`)
-  console.log(changed ? (asleep ? "changed, but the press is stopped for the night" : "publishing") : "nothing changed")
+  appendFileSync(process.env.GITHUB_OUTPUT, `publish=${changed ? "yes" : "no"}\n`)
+  console.log(changed ? "publishing" : "nothing changed")
 }
 
 function safe(fn) {

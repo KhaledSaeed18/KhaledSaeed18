@@ -21,7 +21,7 @@ const dir = `${at(args[0] ?? "dist")}/`.replace(/\/+$/, "/")
 const readmePath = at(args[1] ?? "README.md")
 const strict = process.argv.includes("--strict")
 
-// KB, per printed file; night editions of the masthead are smaller
+// KB, per printed file
 const BUDGET = [
   [/^masthead-/, 170],
   [/^postcard-/, 80],

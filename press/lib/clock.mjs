@@ -1,6 +1,5 @@
-// Beirut time. The site's portrait sleeps between 01:00 and 07:00 in Beirut
-// (components/dither-character.tsx); the press keeps the same hours. ICU
-// handles daylight saving, so nothing here knows what month it is.
+// Beirut time, for the dates and job lines the sheets print. ICU handles
+// daylight saving, so nothing here knows what month it is.
 
 const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
 
@@ -33,6 +32,5 @@ export function beirut(at = new Date()) {
     clock: `${pad(hour)}:${pad(minute)}`,
     date: `${day} ${MONTHS[month - 1]} ${year}`,
     offset: get("timeZoneName").replace("GMT", "utc") || "utc+2",
-    night: hour >= 1 && hour < 7,
   }
 }

@@ -9,13 +9,11 @@ This folder prints the profile README. GitHub sets the words; the press prints t
 3. `press/proof.mjs` checks the printing against the house rules and the budgets. If it fails, nothing is published and the last good printing stays up.
 4. The prints are force-pushed as one orphan commit to the `prints` branch. The README reads them from `raw.githubusercontent.com/.../prints/`, which GitHub serves with a five-minute cache.
 
-Between 01:00 and 07:00 Beirut time the press stops, the same hours the portrait sleeps on the site: the first run after 01:00 pulls the night edition, and nothing is published again until morning.
-
 ## The sheets
 
 | Sheet | Files | Moves |
 | --- | --- | --- |
-| `masthead.mjs` | the hero: name, thesis, the portrait | the plates land in register, he waves once, then breathes and blinks; at night he dozes and the moon turns |
+| `masthead.mjs` | the hero: name, thesis, the portrait | the plates land in register, he waves once, then breathes and blinks |
 | `rule.mjs` | the four section rules | static |
 | `chip.mjs` | the stack as a quad flat package, one pin per tool, from the site's datasheet | static |
 | `postcard.mjs` | the reply postcard, with a scannable sorting barcode | static |
@@ -31,7 +29,6 @@ Needs Node 22 or newer.
 ```bash
 npm ci
 npm run build          # prints into dist/ (asks GitHub for the one number; add -- --offline to skip)
-npm run build:night    # the night edition (prints as if it were 01:30 in Beirut)
 npm run proof          # the house rules, budgets and README checks
 npm run readme         # rewrite README.md from content.mjs
 npm run preview        # the README as GitHub renders it, both themes, desktop and phone, into .proof/

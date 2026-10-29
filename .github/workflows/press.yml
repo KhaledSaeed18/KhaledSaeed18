@@ -1,11 +1,6 @@
 # The press. Pulls a fresh printing of every sheet, proofs it, and publishes
 # it to the `prints` branch, which the README reads from. One orphan commit,
 # force-pushed: main keeps only the source and the README.
-#
-# Beirut keeps whole-hour offsets (UTC+2, UTC+3 in summer), so a run at :17
-# UTC is a run at :17 in Beirut in every season: the night edition starts on
-# the 01:17 run and the day edition on the 07:17 run. Between them the press
-# stops: the night printing is pulled once and left up until morning.
 name: press
 
 on:
@@ -22,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       at:
-        description: "Print as if it were this moment (ISO 8601, e.g. 2026-10-28T23:30:00Z for the night edition)"
+        description: "Print as if it were this moment (ISO 8601, e.g. 2026-10-28T23:30:00Z)"
         required: false
 
 permissions:
