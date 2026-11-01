@@ -8,8 +8,7 @@
 import { readFileSync, writeFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 
-import { about, contact, datasheet, identity, principles, secret, stack, stamps } from "./content.mjs"
-import { part } from "./lib/part.mjs"
+import { about, contact, identity, secret, stamps } from "./content.mjs"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
 export const PRINTS = "https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints"
@@ -28,18 +27,7 @@ function pull(name, { width = "100%", alt = "", href, title } = {}) {
 
 const pad = (n) => String(n).padStart(2, "0")
 
-// the chip on sheet 02: one pin per tool, made up to a multiple of four
-const chip = part(stack)
-const ncComment =
-  chip.nc === 1
-    ? `pin ${chip.total} is not connected. it is reserved for whatever comes next.`
-    : `pins ${chip.count + 1} to ${chip.total} are not connected. they are reserved for whatever comes next.`
-
 const bits = [...secret].map((c) => c.charCodeAt(0).toString(2).padStart(8, "0")).join(" ")
-
-const chipAlt = `Figure 1, the stack drawn as a ${chip.total}-pin chip, ${chip.name}. ${stack
-  .map((l) => `${l.layer}: ${l.items.join(", ")}.`)
-  .join(" ")}${chip.ncNote ? ` ${chip.ncNote}` : ""}`
 
 export function readme() {
   return `<!--
@@ -86,25 +74,8 @@ ${about.paragraphs.join("\n\n")}
 
 <p title="Corrected in proof. The first printing is still in the bio.">I tell computers what to do, and <ruby><del>sometimes</del><rt>usually</rt></ruby> they listen.</p>
 
-<!-- sheet 02. the datasheet -->
+<!-- sheet 02. contact -->
 ${pull("rule-02")}
-
-### ${datasheet.title}
-
-${datasheet.lede}
-
-${pull("chip", { href: `${identity.url}/#stack`, title: `figure 1. pin configuration, ${chip.pkg}, top view`, alt: chipAlt })}
-
-${chip.nc ? `<!-- ${ncComment} -->
-
-` : ""}<samp>features</samp>
-
-${principles.map((p, i) => `<samp>${pad(i + 1)}</samp>&ensp;**${p.title}.**<br>\n${p.body}`).join("\n\n")}
-
-<sub><samp>absolute maximum ratings</samp>&ensp;corner radius 0 px, em dashes 0, emoji 0, unexplained errors 0. Stresses beyond these ratings may cause permanent damage to the device.</sub>
-
-<!-- sheet 03. contact -->
-${pull("rule-03")}
 
 ### ${contact.title}
 
@@ -120,8 +91,8 @@ ${pull("postcard", {
 ${stamps.map((s, i) => pull(`stamp-${pad(i + 1)}-${s.key}`, { width: 68, href: s.href, title: s.title, alt: s.alt })).join("\n")}
 </p>
 
-<!-- sheet 04. the colophon -->
-${pull("rule-04")}
+<!-- sheet 03. the colophon -->
+${pull("rule-03")}
 
 <!-- the slug: the colour bar at the tail of the sheet -->
 ${pull("slug", {

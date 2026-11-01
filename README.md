@@ -40,33 +40,8 @@ TypeScript is my common language across web, backend, mobile and desktop. When a
 
 <p title="Corrected in proof. The first printing is still in the bio.">I tell computers what to do, and <ruby><del>sometimes</del><rt>usually</rt></ruby> they listen.</p>
 
-<!-- sheet 02. the datasheet -->
+<!-- sheet 02. contact -->
 <picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-02-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-02-dark.svg" width="100%" alt=""></picture>
-
-### The stack, pin by pin.
-
-TypeScript end to end, Swift when it belongs on the Mac, and whatever the problem actually needs underneath.
-
-<a href="https://khaledsaeed.tech/#stack" title="figure 1. pin configuration, qfp-96, top view"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/chip-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/chip-dark.svg" width="100%" alt="Figure 1, the stack drawn as a 96-pin chip, KS-96. Interface: React, Next.js, TanStack, Tailwind CSS, shadcn/ui, Vite, Redux, Zustand, Jotai, React Hook Form, Motion. Services: Node.js, NestJS, Express, Hono, FastAPI, Bun, Django, GraphQL, Apollo, WebSockets, BullMQ, Zod, Pydantic, OpenAPI, JWT, Clerk, Resend. Native: Swift, SwiftUI, Rust, React Native, Electron, Expo, Flutter, Riverpod, GNOME. Data: PostgreSQL, Prisma, MongoDB, SQLite, MySQL, Redis, Mongoose, TypeORM, SQLAlchemy, Neon, Supabase, Payload CMS. Tooling: TypeScript, Go, Python, Docker, GitHub Actions, JavaScript, Dart, C, Git, pnpm, Turborepo. Intelligence: AI SDK, Claude Code, Transformers.js, Hugging Face, Claude, OpenAI, Gemini, Mistral, Qwen, Ollama, LangChain, n8n, GitHub Copilot, Codex, Cursor. Platform: Linux, Vercel, Cloudflare, AWS, Google Cloud, Coolify, Traefik, Nginx, Render, Sentry, PostHog, Grafana, Datadog. Quality: Vitest, Playwright, Jest, MSW, ESLint, Prettier, Biome, Husky."></picture></a>
-
-<samp>features</samp>
-
-<samp>01</samp>&ensp;**Make the wrong thing unrepresentable.**<br>
-If a bug can be prevented by the schema, the type system or the database, it should never reach a code review.
-
-<samp>02</samp>&ensp;**Boring infrastructure, sharp edges.**<br>
-Pick proven tools for the foundation so the time goes into the details people actually touch.
-
-<samp>03</samp>&ensp;**Legible software.**<br>
-Tools should explain themselves: why a process would not die, why a Mac is awake, why a token is unsafe.
-
-<samp>04</samp>&ensp;**Ship, then keep it working.**<br>
-CI, security scanning and invariants you can run matter as much as the first release.
-
-<sub><samp>absolute maximum ratings</samp>&ensp;corner radius 0 px, em dashes 0, emoji 0, unexplained errors 0. Stresses beyond these ratings may cause permanent damage to the device.</sub>
-
-<!-- sheet 03. contact -->
-<picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-03-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-03-dark.svg" width="100%" alt=""></picture>
 
 ### Say hello. I read everything.
 
@@ -85,8 +60,8 @@ Email is the fastest way to reach me, at [contact@khaledsaeed.tech](mailto:conta
 <a href="https://discord.com/users/1496301841774805004" title="discord / khaledsaeed18"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/stamp-08-discord-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/stamp-08-discord-dark.svg" width="68" alt="Discord: khaledsaeed18"></picture></a>
 </p>
 
-<!-- sheet 04. the colophon -->
-<picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-04-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-04-dark.svg" width="100%" alt=""></picture>
+<!-- sheet 03. the colophon -->
+<picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-03-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/rule-03-dark.svg" width="100%" alt=""></picture>
 
 <!-- the slug: the colour bar at the tail of the sheet -->
 <a href="https://khaledsaeed.tech/register" title="off register by 3 units"><picture><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/slug-light.svg"><img src="https://raw.githubusercontent.com/KhaledSaeed18/KhaledSaeed18/prints/slug-dark.svg" width="100%" alt="Press hours: the last year's commits by hour of day in Beirut, printed as dithered terracotta patches, darker for busier hours."></picture></a>
