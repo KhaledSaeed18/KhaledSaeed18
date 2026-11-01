@@ -59,7 +59,7 @@ export default async function print(ctx) {
   // the job line: what a printer would read off the tail of the sheet
   const stale = [ctx.data?.stale && ctx.data.fetched, hours?.stale && hours.fetched].filter(Boolean).sort()[0]
   const job = [
-    part(content.stack).name.toLowerCase(), // the job: the chip on sheet 02
+    part(content.stack).name.toLowerCase(), // the job: the chip's part number
     `ed. ${ctx.edition || "local"}`,
     `printing ${ctx.printing}`,
     `pulled ${clock.date}, ${clock.clock} beirut`,

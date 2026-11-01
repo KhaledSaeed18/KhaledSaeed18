@@ -14,8 +14,8 @@ This folder prints the profile README. GitHub sets the words; the press prints t
 | Sheet | Files | Moves |
 | --- | --- | --- |
 | `masthead.mjs` | the hero: name, thesis, the portrait | the plates land in register, he waves once, then breathes and blinks |
-| `rule.mjs` | the four section rules | static |
-| `chip.mjs` | the stack as a quad flat package, one pin per tool, from the site's datasheet | static |
+| `rule.mjs` | the three section rules | static |
+| `chip.mjs` | the stack as a quad flat package, one pin per tool, from the site's datasheet (printed for the site, not placed in the README) | static |
 | `postcard.mjs` | the reply postcard, with a scannable sorting barcode | static |
 | `stamps.mjs` | the pane of link stamps | static |
 | `slug.mjs` | the colour bar: commits by hour of day in Beirut (`lib/hours.mjs`) | static |
